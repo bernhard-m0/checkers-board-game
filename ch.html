@@ -1,0 +1,535 @@
+,<!doctype html>
+<html>
+    <head> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+        <title>ch</title>
+    </head> 
+    <style>
+    body {background-color:grey;}
+    </style>
+    <body> 
+        <h1>ch</h1>
+         <p id="d"></p>  
+         <p id="d1"></p>
+        <div style="position:relative">
+             
+         
+        <canvas id="o" width="360" height="360" style="background-color: beige;border:1px solid black;"></canvas> 
+        <svg id="svg" width="360" height="360"
+        style="position: absolute; left: 0;  top: 0;  z-index: 2;">
+        <circle cx="17" cy="25" r="15"
+        stroke="white" stroke-width="5" fill="white"
+         />
+        
+        </svg>
+        
+        </div>
+         
+        <p id="0"></p>
+        
+    </body>
+    <script>
+  
+    const s=document.getElementById("o");
+    const ctx = s.getContext("2d");
+    ctx.fillStyle="brown";
+    ctx.fillRect(0,0,o.width/8,o.height/8);
+    ctx.fillRect(o.width/4,0,o.width/8,o.height/8);
+    ctx.fillRect(o.width/2,0,o.width/8,o.height/8);
+    ctx.fillRect(o.width*3/4,0,o.width/8,o.height/8);
+    ctx.fillRect(o.width/8,o.width/8,o.width/8,o.height/8);
+    ctx.fillRect(o.width*3/8,o.width/8,o.width/8,o.height/8);
+    ctx.fillRect(o.width*5/8,o.width/8,o.width/8,o.height/8);
+    ctx.fillRect(o.width*7/8,o.width/8,o.width/8,o.height/8);
+    ctx.fillRect(0,o.width/4,o.width/8,o.height/8);
+    ctx.fillRect(o.width/4,o.width/4,o.width/8,o.height/8);
+    ctx.fillRect(o.width/2,o.width/4,o.width/8,o.height/8);
+    ctx.fillRect(o.width*3/4,o.width/4,o.width/8,o.height/8);
+    ctx.fillRect(o.width/8,o.width*3/8,o.width/8,o.height/8);
+    ctx.fillRect(o.width*3/8,o.width*3/8,o.width/8,o.height/8);
+    ctx.fillRect(o.width*5/8,o.width*3/8,o.width/8,o.height/8);
+    ctx.fillRect(o.width*7/8,o.width*3/8,o.width/8,o.height/8);
+    ctx.fillRect(0,o.width/2,o.width/8,o.height/8);
+    ctx.fillRect(o.width/4,o.width/2,o.width/8,o.height/8);
+    ctx.fillRect(o.width/2,o.width/2,o.width/8,o.height/8);
+    ctx.fillRect(o.width*3/4,o.width/2,o.width/8,o.height/8);
+    ctx.fillRect(0,o.width*3/4,o.width/8,o.height/8);
+    ctx.fillRect(o.width/4,o.width*3/4,o.width/8,o.height/8);
+    ctx.fillRect(o.width/2,o.width*3/4,o.width/8,o.height/8);
+    ctx.fillRect(o.width*3/4,o.width*3/4,o.width/8,o.height/8);
+    ctx.fillRect(o.width/8,o.width*5/8,o.width/8,o.height/8);
+    ctx.fillRect(o.width*3/8,o.width*5/8,o.width/8,o.height/8);
+    ctx.fillRect(o.width*5/8,o.width*5/8,o.width/8,o.height/8);
+    ctx.fillRect(o.width*7/8,o.width*5/8,o.width/8,o.height/8);
+    ctx.fillRect(o.width/8,o.width*7/8,o.width/8,o.height/8);
+    ctx.fillRect(o.width*3/8,o.width*7/8,o.width/8,o.height/8);
+    ctx.fillRect(o.width*5/8,o.width*7/8,o.width/8,o.height/8);
+    ctx.fillRect(o.width*7/8,o.width*7/8,o.width/8,o.height/8);
+ 
+/* 
+    let x=[];
+    let y=[];
+    x[0]=50;
+    y[0]=100;
+*/    
+    let f=[];
+    let p1j=0;
+    
+    
+    for(let i=0; i<8; i++)
+    {
+      f[i]=[];
+      for(let j=0; j<8; j=j+2)
+      {
+      if(i<=2&&i%2==0)f[i][j]="p1";
+      else if(i<=2&&i%2==1)f[i][j+1]="p1";
+      else if (i>=5&&i%2==0)f[i][j]="p2";
+      else if(i>=5&&i%2==1)f[i][j+1]="p2";
+      else if(i>=3&&i<5&&i==4)  f[i][j]="g";
+      else if(i>=3&&i<5&&i==3)  f[i][j+1]="g";
+      }
+    }
+    
+   function upr()
+   {
+    x[n]=x[n]+45;
+    y[n]=y[n]-45;
+   }
+   /* 
+   function p2(x0,y0,x1,y1)
+   {
+     
+     if(f[y0][x0]==p2&&x1-x0==1||x1-x0==-1&&y1-y0==-1)
+     {
+     plt(x0,y0);
+       if(p1j==1){f[y0][x0]="g";p1j=0;}
+       else
+       {
+       f[y0][x0]="g";
+       f[y1][x1]="p2";
+       }
+       for(let i=7; i>=0; i--)
+       {
+         for(let j=0; j<8; j++)
+         {
+          if(i!=y0||j!=x0)
+          {
+   //       if(x0+2<8&&y0-2>=0&&f[y0-1][x0+1].includes("p1")&&f[y0-2][x0+2]=="g"||
+   //       x0-2>=0&&y0-2<=0&&f[y0-1][x0-1].includes("p1")&&f[y0-2][x0-2]=="g")
+          p1t(i,j);
+          if(p1j==1){p1j=0; return;}
+          }
+         }
+       }
+     }
+     else if(f[y0][x0]==p2&&x1-x0==2||x1-x0==-2&&y1-y0==-2)
+     {
+            if(x1+2<8&&y1-2>=0&&f[y1-1][x1+1].includes("p1")&&f[y1-2][x1+2]=="g"||
+               x1-2>=0&&y1-2<=0&&f[y1-1][x1-1].includes("p1")&&f[y1-2][x1-2]=="g") 
+              p1t(i,j);
+            else 
+            {
+            f[y1][x1]="p1";
+            f[y0][x0]="g";  
+            }    
+     }
+   }
+   
+   function p1t (x0,y0)
+   {
+   if(x0+2<8&&y0-2>=0&&f[y0-1][x0+1].includes("p1")&&f[y0-2][x0+2]=="g")
+   {
+   f[y0][x0]="g";
+   document.getElementById("0").innerHTML="Game piece was taken by Player 1";
+   }
+   else if (x0-2>=0&&y0-2<=0&&f[y0-1][x0-1].includes("p1")&&f[y0-2][x0-2]=="g")
+   {
+   f[y0][x0]="g";
+   document.getElementById("0").innerHTML="Game piece was taken by Player 1";
+   }
+   p1j=1;
+   }
+   function p1c (x0,y0)
+   {
+   if (x0-2>=0&&y0+2<8&&f[y0+1][x0-1].includes("p1")&&f[y0+2][x0-2]=="g")
+   {
+   f[y0][x0]="g";
+   document.getElementById("0").innerHTML="Game piece was taken by Player 1";
+   }
+   else if(x0+2<8&&y0+2<8&&f[y0+1][x0+1].includes("p1")&&f[y0+2][x0+2]=="g")
+   {
+   f[y0][x0]="g";
+   document.getElementById("0").innerHTML="Game piece was taken by Player 1";
+   }
+   else if(x0+2<8&&y0-2>=0&&f[y0-1][x0+1].includes("p1")&&f[y0-2][x0+2]=="g")
+   {
+   f[y0][x0]="g";
+   document.getElementById("0").innerHTML="Game piece was taken by Player 1";
+   }
+   else if(x0-2>=0&&y0-2<=0&&f[y0-1][x0-1].includes("p1")&&f[y0-2][x0-2]=="g")
+   {
+   f[y0][x0]="g";
+   document.getElementById("0").innerHTML="Game piece was taken by Player 1";
+   }
+   p1j=1;
+   }
+   let previ=[];
+   */
+   function play ()
+   {
+     let k=0;
+     for(let i=7; i>0; i--)
+     {
+      for(let j=0; j<8; j++)
+      {
+      if(f[i][j]=="p1")
+      {
+ //     gamepiecep1(j,i);
+       if (j-2>=0&&i+2<8&&f[i+1][j-1].includes("p2")&&f[i+2][j-2]=="g"||
+       j+2<8&&i+2<8&&f[i+1][j+1].includes("p2")&&f[i+2][j+2]=="g")
+       {t(j,i); k=1; break;}
+      }
+      }
+      if(k==1)break;
+     }
+     if(k==0)
+     {
+     for(let i=7; i>0; i--)
+     {
+      for(let j=0; j<8; j++)
+      {
+      if(f[i][j]=="p1d")
+      {
+ //     gamepiecep1(j,i);
+       if (j-2>=0&&i+2<8&&f[i+1][j-1].includes("p2")&&f[i+2][j-2]=="g"||
+       j+2<8&&i+2<8&&f[i+1][j+1].includes("p2")&&f[i+2][j+2]=="g"
+       ||j-2>=0&&i-2>=0&&f[i-1][j-1].includes("p2")&&f[i-2][j-2]=="g"||
+       j+2<8&&i-2>=0&&f[i-1][j+1].includes("p2")&&f[i-2][j+2]=="g")
+
+       {tc(j,i); k=1; break;}
+      }
+      }
+      if(k==1)break;
+     }
+     }
+     if(k==0)
+     {
+     for(let i=7; i>=0; i--)
+     {
+       for(let j=0; j<8; j++)
+       {
+       if(j+1<8&&i+1<8&&f[i+1][j+1]=="g"&&f[i][j]=="p1")
+       {
+       f[i+1][j+1]="p1";
+       f[i][j]="g";
+       k=1;break;
+       }
+       }
+       if(k==1)break;
+     }
+     }
+    if(k==0)
+    {
+    for(let i=7; i>=0; i--)
+     {
+     for(let j=0; j<8; j++)
+     {
+     if(j-1>=0&&i+1<8&&f[i+1][j-1]=="g"&&f[i][j]=="p1")
+     {
+     f[i+1][j-1]="p1";
+     f[i][j]="g";
+     k=1; break;
+     }
+     }
+     if(k==1)break;
+    } 
+    }
+   }
+   function gamepiecep1(x,y)
+   {
+     let xpiece =22.5+x*45;
+     let ypiece =22.5+y*45;
+     document.getElementById("svg").innerHTML+=
+     '<circle cx=' +xpiece +' cy=' +ypiece+
+     ' r="17" fill="white"/>';
+//     stroke="white" stroke-width="5" fill="white" />';
+
+
+//     50 cy=30 r="15" stroke="white" stroke-width="5" fill="white"/>';
+
+/*      '<circle cx="';
+     document.getElementById("svg").innerHTML+=xpiece;
+     document.getElementById("svg").innerHTML+='" cy="';
+     document.getElementById("svg").innerHTML+=ypiece;
+     document.getElementById("svg").innerHTML+='"r="15"
+     stroke="white" stroke-width="5" fill="white" />';
+  */
+     
+     
+     
+  
+  //   '<circle cx="15" cy="15" r="15" />';
+ //    '<circle cx="'+xpiece+'" cy="'+ypiece+'" r="15"
+ //    stroke="white" stroke-width="5" fill="white" />';
+  
+   }
+   function gamepiecep01(x,y)
+   {
+     let xpiece =22.5+x*45;
+     let ypiece =22.5+y*45;
+     document.getElementById("svg").innerHTML+=
+     '<circle cx=' +xpiece +' cy=' +ypiece+
+     ' r="17" fill="white"/>'+
+     '<circle cx=' +xpiece +' cy=' +ypiece+
+     ' r="7" fill="beige"/>';
+   }
+   
+   function gamepiecep2(x,y)
+   {
+     let xpiece =22.5+x*45;
+     let ypiece =22.5+y*45;
+     document.getElementById("svg").innerHTML+=
+     '<circle cx=' +xpiece +' cy=' +ypiece+
+     ' r="17"/>';
+   }
+      function gamepiecep02(x,y)
+   {
+     let xpiece =22.5+x*45;
+     let ypiece =22.5+y*45;
+     document.getElementById("svg").innerHTML+=
+     '<circle cx=' +xpiece +' cy=' +ypiece+
+     ' r="17" fill="black"/>'+
+     '<circle cx=' +xpiece +' cy=' +ypiece+
+     ' r="7" fill="grey"/>';
+   }
+   
+   function movep1(x,y)
+   {
+ //  t1(x,y);
+ /*  if (22.5+x*45-90>0&&22.5*45+90<360&&f[y+1][x-1]=="p2"&&f[y+2][x-2]=="g")
+   {
+     f[y+2][x-2]="p1";
+     f[y][x]="g";
+     f[y+1][x-1]="g";
+     for(let i=0; i<8; i++)
+     {
+      for(let j=0; j<8; j++)
+      if(f[i][j]=="p1")
+      {
+      gamepiecep1(j,i);  
+      }
+     }
+  
+   }
+   else if (22.5+x*45+90<360&&22.5+y*45+90<360&&f[y+1][x+1]=="p2"&&f[y+2][x+2]=="g")
+   {
+     f[y+2][x+2]="p1";
+     f[y][x]="g";
+     f[y+1][x+1]="g";
+     for(let i=0; i<8; i++)
+     {
+      for(let j=0; j<8; j++)
+      if(f[i][j]=="p1")
+      {
+      gamepiecep1(j,i);  
+      }
+     }  
+   }
+
+   else if(22.5+x*45+45<360&&22.5+y*45+45<360&&f[y+1][x+1]=="g")
+     {
+     f[y+1][x+1]="p1";
+     f[y][x]="g";
+     for(let i=0; i<8; i++)
+     {
+      for(let j=0; j<8; j++)
+      if(f[i][j]=="p1")
+      {
+      gamepiecep1(j,i);   
+      }
+     }
+     }
+   else if(22.5+x*45-45>0&&22.5+y*45+45<360&&f[y+1][x-1]=="g")
+     {
+     f[y+1][x-1]="p1";
+     f[y][x]="g";
+     for(let i=0; i<8; i++)
+     {
+      for(let j=0; j<8; j++)
+      if(f[i][j]=="p1")
+      {
+      gamepiecep1(j,i);   
+      }
+     }
+     }*/
+   }
+//   svg.addEventListener('touchstart',t(7,1));
+   let x=-1;
+   let y=-1;
+   function t01 (x0,y0)
+   {
+      
+   if (x0-2>=0&&y0+2<8&&f[y0+1][x0-1].includes("p2")&&f[y0+2][x0-2]=="g")
+   {
+     f[y0+2][x0-2]="p1";
+     f[y0][x0]="g";
+     f[y0+1][x0-1]="g";
+
+       x=x0-2;
+       y=y0+2;
+       w=0;
+   }
+   else if (x0+2<8&&y0+2<8&&f[y0+1][x0+1].includes("p2")&&f[y0+2][x0+2]=="g")
+   {
+     f[y0+2][x0+2]="p1";
+     f[y0][x0]="g";
+     f[y0+1][x0+1]="g";
+     
+       x=x0+2;
+       y=y0+2;
+       previ=(2,0,1);
+   }
+   else if (x0+2<8&&y0-2>=0&&f[y0-1][x0+1].includes("p2")&&f[y0-2][x0+2]=="g")
+   {
+     f[y0-2][x0+2]="p1";
+     f[y0][x0]="g";
+     f[y0-1][x0+1]="g";
+     
+       x=x0+2;
+       y=y0-2;
+       previ=(2,0,1);  
+   }
+   else if (x0-2>=0&&y0-2<=0&&f[y0-1][x0-1].includes("p2")&&f[y0-2][x0-2]=="g")
+   {
+     f[y0-2][x0-2]="p1";
+     f[y0][x0]="g";
+     f[y0-1][x0-1]="g";
+
+       x=x0-2;
+       y=y0-2;
+       w=0; 
+   }
+   }
+   
+   function t1 (x0,y0)
+   {
+      
+   if (x0-2>=0&&y0+2<8&&f[y0+1][x0-1].includes("p2")&&f[y0+2][x0-2]=="g")
+   {
+     f[y0+2][x0-2]="p1";
+     f[y0][x0]="g";
+     f[y0+1][x0-1]="g";
+ //    if(w<3)t1((x0+2),(y0-2));
+       x=x0-2;
+       y=y0+2;
+       w=0;
+   }
+   else if (x0+2<8&&y0+2<8&&f[y0+1][x0+1].includes("p2")&&f[y0+2][x0+2]=="g")
+   {
+     f[y0+2][x0+2]="p1";
+     f[y0][x0]="g";
+     f[y0+1][x0+1]="g";
+ //    t1((x0+2),(y0+2));
+       x=x0+2;
+       y=y0+2;
+       previ=(2,0,1);
+   }
+   
+   else w=1;
+   if (f[7][1]=="p1"){f[7][1]="p1d";}
+   if (f[7][3]=="p1"){f[7][3]="p1d";}
+   if (f[7][5]=="p1"){f[7][5]="p1d";}
+   if (f[7][7]=="p1"){f[7][7]="p1d";}
+   }
+   f[2][6]="p2";
+   f[4][6]="p2";
+   f[5][7]="g";
+   f[3][3]="p2";
+   f[7][5]="g";
+//   t(7,1);
+   movep1(7,1);
+   function tc(x1,y1)
+   {
+   t01(x1,y1);t01(x,y);t01(x,y);t01(x,y);t01(x,y);t01(x,y);t01(x,y);t01(x,y);t01(x,y);
+   }
+   function t(x1,y1)
+   {
+   t1(x1,y1);t1(x,y);t1(x,y);
+   }
+   play();
+   //t1(4,2);
+//   f[5][1]="g";
+   document.getElementById("svg").innerHTML='';
+    for(let i=0; i<8; i++)
+    {
+      for(let j=0; j<8; j++)
+      if(f[i][j]=="p1")
+      { 
+      
+      gamepiecep1(j,i);   
+  /*        
+      ctx.fillStyle="black";
+      ctx.beginPath;
+      ctx.moveTo(x[i]+o.width/16, y[0]+ o.height/16-10);
+      ctx.arc(22.5+j*45,22.5+i*45,17,0,2*Math.PI);
+      ctx.fill();
+      ctx.closePath();
+      */
+      }
+    }
+    for(let i=0; i<8; i++)
+    {
+      for(let j=0; j<8; j++)
+     
+      if(f[i][j]=="p1d")
+      {
+      gamepiecep01(j,i); 
+      }
+    }   
+    for(let i=0; i<8; i++)
+    {
+      for(let j=0; j<8; j++)
+     
+      if(f[i][j]=="p2")
+      {
+      gamepiecep2(j,i);   
+  /*        
+      ctx.fillStyle="beige";
+      ctx.beginPath;
+      ctx.arc(22.5+j*45,22.5+i*45,17,0,2*Math.PI);
+      ctx.fill();
+      ctx.closePath();
+  */ 
+      }
+    }   
+        for(let i=0; i<8; i++)
+    {
+      for(let j=0; j<8; j++)
+     
+      if(f[i][j]=="p2d")
+      {
+      gamepiecep02(j,i);   
+      }
+    }   
+      
+/*
+    ctx.lineTo(x[i]+33,y[i]+ 20);
+    ctx.lineTo(x[i]+33,y[i]+27.5);
+    ctx.lineTo(x[i]+27.5,y[i]+ 35);
+    ctx.lineTo(x[i]+17.5,y[i]+35);
+    ctx.lineTo(x[i]+12,y[i]+27.5);
+    ctx.lineTo(x[i]+12,y[i]+ 20);*/
+    
+    
+    document.getElementById("d").innerHTML=f;
+    document.getElementById("d1").innerHTML=w;
+ /*
+  document.getElementById("myCanvas");
+const ctx = myCanvas.getContext("2d");
+ctx.fillStyle = "red";
+ctx.fillRect(0,0,150,75);
+   */ 
+    </script>
+</html>
